@@ -7,9 +7,9 @@ public class Book {
     private String title;
     private List<Author> authors;
 
-    public Book(String title, String authorName) throws EmptyAuthorListException{
+    public Book(String title, String authorName){
         if(authorName==null){
-            throw new EmptyAuthorListException("Authors name is required");
+            throw new Error("Authors name is required");
         }
 
         Author author = new Author(authorName);
