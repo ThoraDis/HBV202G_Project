@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibrarySystem {
-    private List<Book> books;
+    private List<Borrowable> books;
     private List<Lending> lendings;
     private List<User> users;
 
@@ -46,8 +46,8 @@ public class LibrarySystem {
         
     }
 
-    public Book findBookByTitle(String title){
-        for (Book book : books) {
+    public Borrowable findBookByTitle(String title){
+        for (Borrowable book : books) {
             if(book.getTitle().equalsIgnoreCase(title))
                 return book;
         }
@@ -63,14 +63,11 @@ public class LibrarySystem {
         return null;
     }
 
-    public void borrowBook(User user, Book book) throws UserOrBookDoesNotExistException{
+    public void borrowBook(User user, Borrowable book) throws UserOrBookDoesNotExistException{
         if(book==null || user ==null){
             throw new UserOrBookDoesNotExistException("User or book cannot be empty");
         }
          
-        if (!users.contains(user) || !books.contains(book)) {
-            throw new UserOrBookDoesNotExistException("User or book does not exist in system");
-        }
 
         for (Lending lend : lendings) {
             if(lend.getBook().equals(book)){
@@ -85,7 +82,7 @@ public class LibrarySystem {
 
     }
 
-    public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate) throws UserOrBookDoesNotExistException{
+    public void extendLending(FacultyMember facultyMember, Borrowable book, LocalDate newDueDate) throws UserOrBookDoesNotExistException{
         if(book==null || facultyMember ==null){
             throw new UserOrBookDoesNotExistException("User or book cannot be empty");
         }
@@ -102,7 +99,7 @@ public class LibrarySystem {
 
     }
 
-    public void returnBook(Student user, Book book) throws UserOrBookDoesNotExistException{
+    public void returnBook(Student user, Borrowable book) throws UserOrBookDoesNotExistException{
         if(book==null || user ==null){
             throw new UserOrBookDoesNotExistException("User or book cannot be empty");
         }
