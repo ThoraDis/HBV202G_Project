@@ -24,28 +24,28 @@ public class BookSet implements Borrowable{
 
     public void borrow(User user, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-            for (Borrowable volume : bookVolumes) {
-                volume.borrow(user, library);
+        for (Borrowable volume : bookVolumes) {
+            volume.borrow(user, library);
             
-            }
+        }
     
     }
 
     public void returnAll(Student user, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-            for (Borrowable volume : bookVolumes) {
-                volume.returnAll(user, library);
+        for (Borrowable volume : bookVolumes) {
+            volume.returnAll(user, library);
             
-            }
+        }
     
     }
 
     public void extendAll(FacultyMember facultyMember, LocalDate newDueDate, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-            for (Borrowable volume : bookVolumes) {
-                volume.extendAll(facultyMember, newDueDate, library);
+        for (Borrowable volume : bookVolumes) {
+            volume.extendAll(facultyMember, newDueDate, library);
             
-            }
+        }
     
     }
 
