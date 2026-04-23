@@ -16,6 +16,14 @@ public class LibrarySystem {
 
     }
 
+    public List<Borrowable> getBookList(){
+        return this.books;
+    }
+
+    public List<Lending> getLendings(){
+        return this.lendings;
+    }
+
     public void addBookWithTitleAndNameOfSingleAuthor(String title, String authorName){
 
         Book book=new Book(title, authorName);
