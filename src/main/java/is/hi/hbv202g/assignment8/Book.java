@@ -1,15 +1,16 @@
 package is.hi.hbv202g.assignment8;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements Borrowable{
 
     private String title;
     private List<Author> authors;
 
-    public Book(String title, String authorName) throws EmptyAuthorListException{
+    public Book(String title, String authorName){
         if(authorName==null){
-            throw new EmptyAuthorListException("Authors name is required");
+            throw new Error("Authors name is required");
         }
 
         Author author = new Author(authorName);
@@ -47,13 +48,31 @@ public class Book {
         this.authors.add(author);
     }
 
+    @Override
     public String getTitle(){
-        return this.title;
+        return title;
     }
 
     public void setTitle(String title){
         this.title=title;
     }
 
+    @Override
+    public void borrow(User user, LibrarySystem library) throws UserOrBookDoesNotExistException{
+        library.borrowBook(user, this);
+
+    }
+
+    @Override
+    public void returnAll(Student user, LibrarySystem library) throws UserOrBookDoesNotExistException{
+    
+        library.returnBook(user, this);
+
+    }
+
+    @Override
+    public void extendAll(FacultyMember facultyMember, LocalDate newDueDate, LibrarySystem library) throws UserOrBookDoesNotExistException{
+        library.extendLending(facultyMember, this, newDueDate);
+    }
 
 }

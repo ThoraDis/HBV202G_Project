@@ -3,10 +3,10 @@ import java.time.LocalDate;
 
 public class Lending{
     private LocalDate dueDate;
-    private Book book;
+    private Borrowable book;
     private User user;
 
-    public Lending(Book book, User user) {
+    public Lending(Borrowable book, User user) {
         this.book = book;
         this.user = user;
         this.dueDate = LocalDate.now().plusDays(30);
@@ -20,7 +20,7 @@ public class Lending{
         this.dueDate = dueDate;
     }
 
-    public Book getBook() {
+    public Borrowable getBook() {
         return this.book;
     }
 
