@@ -24,7 +24,7 @@ public class Lending{
         return this.book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Borrowable book) {
         this.book = book;
     }
 

@@ -1,0 +1,8 @@
+<project>
+<body>
+<menu name="Overview">
+<item name="UML class diagram" href="uml.html" />
+</menu>
+<menu ref="reports" />
+</body>
+</project>
