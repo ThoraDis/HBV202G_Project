@@ -1,20 +1,19 @@
 package is.hi.hbv202g.assignment8;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class LibrarySystemTest {
     private LibrarySystem system;
 
     @BeforeEach
     void constructLibrarySystem() {
-        LibrarySystem system = new LibrarySystem();
+        system = new LibrarySystem();
     }
 
     @Test
