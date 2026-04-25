@@ -7,8 +7,8 @@
     <artifactId>Assignment8</artifactId>
     <version>2.0.0</version>
 
-    <name>HBV202G Assignment8</name>
-    <description>Project to be used for Assignment 8 in course HBV202G Software Design and Construction</description>
+    <name>HBV202G_Project [Assignment8]</name>
+    <description>Project to be used for Final Assignment in course HBV202G Software Design and Construction</description>
     <licenses>
         <license>
             <name>MIT</name>
