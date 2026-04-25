@@ -15,6 +15,10 @@ Maven:
 - `mvn package` package the project into a JAR file that is stored in the target folder
 - `mvn site` creates a project website
 
+JAR:
+- `createjar` create a jar file.
+- `run jar` run jar file.
+
 ## Design pattern
 
 This project uses the composite pattern to create a bookset that contains more than one book. This makes it so if one book in the set is borrowed then all books are borrowed with lendings.
