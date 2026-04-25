@@ -3,11 +3,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Book that can be borrowed or returned from the library
+ */
 public class Book implements Borrowable{
 
     private String title;
     private List<Author> authors;
 
+    /**
+     * Constructor for book with one author
+     * 
+     * The constructor creates an Author object and adds it to authors
+     * 
+     * @param title the title of the book
+     * @param authorName the name of the author
+     */
     public Book(String title, String authorName){
         if(authorName==null){
             throw new Error("Authors name is required");
@@ -20,6 +31,14 @@ public class Book implements Borrowable{
         
     }
 
+    /**
+     * Constructor for book with more than one author
+     * 
+     * 
+     * @param title the title of the book
+     * @param authors the list of all author
+     * @throws EmptyAuthorListException if authors is empty
+     */
     public Book(String title, List<Author> authors) throws EmptyAuthorListException{
         if(authors==null ||authors.isEmpty()){
             throw new EmptyAuthorListException("A list of author names is required");
@@ -30,17 +49,30 @@ public class Book implements Borrowable{
 
     }
 
+    /**
+    *  Get authors for book
+    * @return the list of authors for book
+    */
     public List<Author> getAuthors(){
         return this.authors;
     }
 
+    /**
+     * Set a list of authors for book
+     * @param authors the new list of authors for book
+     * @throws EmptyAuthorListException throws if list is empty
+     */
     public void setAuthors(List<Author> authors) throws EmptyAuthorListException{
         if(authors==null ||authors.isEmpty()){
             throw new EmptyAuthorListException("A list of author names is required");
         }
         this.authors=authors;
     }
-
+    /**
+    * Add one author for the list of authors
+    * @param author the author to add to the list
+    * @throws EmptyAuthorListException throws if author is empty
+    */
     public void addAuthor(Author author)throws EmptyAuthorListException{
         if(author == null){
             throw new EmptyAuthorListException("Author is required");
@@ -53,6 +85,7 @@ public class Book implements Borrowable{
         return title;
     }
 
+    @Override
     public void setTitle(String title){
         this.title=title;
     }
