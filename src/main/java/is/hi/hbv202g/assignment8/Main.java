@@ -17,38 +17,38 @@ public class Main
 
 
         //Búa til facultymembers
-        FacultyMember facultyMember = new FacultyMember("Kalli", "Vísindi");
-        myLibrarySystem.addFacultyMemberUser("Kalli", "Vísindi");
+        FacultyMember facultyMemberKalli = new FacultyMember("Kalli", "Science");
+        myLibrarySystem.addFacultyMemberUser("Kalli", "Science");
 
 
-        Author authorListOne= new Author("höfundurthrju");
-        Author authorListTvo= new Author("höfundurfjögur");
+        Author authorListOne= new Author("author three");
+        Author authorListTvo= new Author("author four");
 
-        List<Author> authors = new ArrayList<>();
-        authors.add(authorListOne);
-        authors.add(authorListTvo);
+        List<Author> authorsList = new ArrayList<>();
+        authorsList.add(authorListOne);
+        authorsList.add(authorListTvo);
 
 
 
         //Búa til bækur
-        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Bók 1", "höfundureitt");
-        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Bók 2", "höfundureitt");
-        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Bók 3", "höfundurtvo");
+        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Book 1", "author one");
+        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Book 2", "author tvo");
+        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Book 3", "author tvo");
 
         try {
 
-            myLibrarySystem.addBookWithTitleAndAuthorList("Bók 4", authors);
+            myLibrarySystem.addBookWithTitleAndAuthorList("Book 4", authorsList);
 
         } catch (EmptyAuthorListException e) {
             System.out.println("Höfundarlisti er tóm " + e.getMessage());
         }
 
         //Bókaset
-        Book bookfive = new Book("Bók 5", "höfundurfimm");
-        Book booksix = new Book("Bók 6", "höfundurfimm");
+        Book bookfive = new Book("Book 5", "author five");
+        Book booksix = new Book("Book 6", "author five");
 
-        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Bók 5", "höfundurfimm");
-        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Bók 6", "höfundurfimm");
+        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Book 5", "höfundurfimm");
+        myLibrarySystem.addBookWithTitleAndNameOfSingleAuthor("Book 6", "höfundurfimm");
 
         BookSet bokaset = new BookSet("Dinosaur series");
         bokaset.add(bookfive);
@@ -104,9 +104,9 @@ public class Main
                 case 1:
                     System.out.println("Enter book/bookset title");
                     String borrow = scan.nextLine();
-                    Borrowable toBorrow = myLibrarySystem.findBookByTitle(borrow);
+                    Borrowable toBorrow = myLibrarySystem.findBorrowableByTitle(borrow);
                     try{
-                        myLibrarySystem.borrowBook(currentUser, toBorrow);
+                        myLibrarySystem.borrowBorrowable(currentUser, toBorrow);
                     } catch (UserOrBookDoesNotExistException e) {
                         System.out.println(e.getMessage());
                     }
@@ -117,10 +117,10 @@ public class Main
                     if(currentUser instanceof Student){
                         System.out.println("Enter book/bookset title");
                         String returned = scan.nextLine();
-                        Borrowable borrowed = myLibrarySystem.findBookByTitle(returned);
+                        Borrowable borrowed = myLibrarySystem.findBorrowableByTitle(returned);
 
                         try{
-                            myLibrarySystem.returnBook((Student) currentUser, borrowed);
+                            myLibrarySystem.returnBorrowable((Student) currentUser, borrowed);
                         } catch (UserOrBookDoesNotExistException e) {
                             System.out.println(e.getMessage());
                         }
@@ -169,7 +169,7 @@ public class Main
                         FacultyMember currentFacultyMember = (FacultyMember) currentUser;
                         System.out.println("Enter book/bookset title");
                         String extend = scan.nextLine();
-                        Borrowable toExtend = myLibrarySystem.findBookByTitle(extend);
+                        Borrowable toExtend = myLibrarySystem.findBorrowableByTitle(extend);
                     try{
                         myLibrarySystem.extendLending(currentFacultyMember, toExtend, LocalDate.now().plusDays(7));
                     } catch (UserOrBookDoesNotExistException e) {

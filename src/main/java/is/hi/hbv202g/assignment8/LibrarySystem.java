@@ -54,7 +54,7 @@ public class LibrarySystem {
         
     }
 
-    public Borrowable findBookByTitle(String title){
+    public Borrowable findBorrowableByTitle(String title){
         for (Borrowable book : books) {
             if(book.getTitle().equalsIgnoreCase(title))
                 return book;
@@ -71,65 +71,65 @@ public class LibrarySystem {
         return null;
     }
 
-    public void borrowBook(User user, Borrowable book) throws UserOrBookDoesNotExistException{
-        if(book==null || user ==null){
+    public void borrowBorrowable(User user, Borrowable borrowable) throws UserOrBookDoesNotExistException{
+        if(borrowable==null || user ==null){
             throw new UserOrBookDoesNotExistException("User or book cannot be empty");
         }
          
 
         for (Lending lend : lendings) {
-            if(lend.getBook().equals(book)){
+            if(lend.getBook().equals(borrowable)){
                 System.out.println("Bók er nú þegar í láni, sorrý.");
                 return;
             }
             
         }
 
-        Lending lending = new Lending(book, user);
+        Lending lending = new Lending(borrowable, user);
         lendings.add(lending);
 
     }
 
-    public void extendLending(FacultyMember facultyMember, Borrowable book, LocalDate newDueDate) throws UserOrBookDoesNotExistException{
-        if(book==null || facultyMember ==null){
+    public void extendLending(FacultyMember facultyMember, Borrowable borrowable, LocalDate newDueDate) throws UserOrBookDoesNotExistException{
+        if(borrowable==null || facultyMember ==null){
             throw new UserOrBookDoesNotExistException("User or book cannot be empty");
         }
 
         for (Lending lend : lendings) {
-            if(lend.getBook().equals(book) && lend.getUser().equals(facultyMember)){
+            if(lend.getBook().equals(borrowable) && lend.getUser().equals(facultyMember)){
                 System.out.println("Lán er lengt til" + newDueDate.toString());
                 lend.setDueDate(newDueDate);
                 return;
             }
         }
 
-        System.out.println("Ekkert svona lán í kerfinu");
+        System.out.println("No such loan in system");
 
     }
 
-    public void returnBook(Student user, Borrowable book) throws UserOrBookDoesNotExistException{
-        if(book==null || user ==null){
+    public void returnBorrowable(Student student, Borrowable borrowable) throws UserOrBookDoesNotExistException{
+        if(borrowable==null || student ==null){
             throw new UserOrBookDoesNotExistException("User or book cannot be empty");
         }
 
         Lending lendingNotanda = null;
         
         for (Lending lend : lendings) {
-            if(lend.getBook().equals(book) && lend.getUser().equals(user)){
+            if(lend.getBook().equals(borrowable) && lend.getUser().equals(student)){
                 if(LocalDate.now().isAfter(lend.getDueDate())){
-                    System.out.println("Bókin var skiluð seint þ.a. sekt var sett á nemanda");
-                    user.setFeePaid(false);
+                    System.out.println("Book was returned late, fee applied");
+                    student.setFeePaid(false);
                     lendingNotanda=lend;
 
                 } else{
-                    System.out.println("Lán úrælt");
+                    System.out.println("Loan paid");
                     lendingNotanda=lend;
                 }
             }
         }
 
         if(lendingNotanda==null){
-            System.out.println("Þessi bók var ekki í láni eða rangur notandi");
+            System.out.println("This is title is available or wrong user");
         }
 
         lendings.remove(lendingNotanda);

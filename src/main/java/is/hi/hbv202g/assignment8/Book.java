@@ -58,15 +58,15 @@ public class Book implements Borrowable{
     }
 
     @Override
-    public void borrow(User user, LibrarySystem library) throws UserOrBookDoesNotExistException{
-        library.borrowBook(user, this);
+    public void borrowAll(User user, LibrarySystem library) throws UserOrBookDoesNotExistException{
+        library.borrowBorrowable(user, this);
 
     }
 
     @Override
-    public void returnAll(Student user, LibrarySystem library) throws UserOrBookDoesNotExistException{
+    public void returnAll(Student student, LibrarySystem library) throws UserOrBookDoesNotExistException{
     
-        library.returnBook(user, this);
+        library.returnBorrowable(student, this);
 
     }
 

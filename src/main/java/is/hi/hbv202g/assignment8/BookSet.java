@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BookSet implements Borrowable{
-    private List<Borrowable> bookVolumes = new ArrayList<Borrowable>();
+    private List<Borrowable> books = new ArrayList<Borrowable>();
     private String title;
 
     public BookSet(String title) {
@@ -12,38 +12,41 @@ public class BookSet implements Borrowable{
     }
 
     public void add(Borrowable book) {
-        bookVolumes.add(book);
+        books.add(book);
     }
 
     public void remove(Borrowable book) {
-        bookVolumes.remove(book);
+        books.remove(book);
     }
     public List<Borrowable> getChildren() {
-        return bookVolumes;
+        return books;
     }
 
-    public void borrow(User user, LibrarySystem library) throws UserOrBookDoesNotExistException {
+    @Override
+    public void borrowAll(User user, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-        for (Borrowable volume : bookVolumes) {
-            volume.borrow(user, library);
+        for (Borrowable borrowable : books) {
+            borrowable.borrowAll(user, library);
 
         }
 
     }
 
-    public void returnAll(Student user, LibrarySystem library) throws UserOrBookDoesNotExistException {
+    @Override
+    public void returnAll(Student student, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-        for (Borrowable volume : bookVolumes) {
-            volume.returnAll(user, library);
+        for (Borrowable borrowable : books) {
+            borrowable.returnAll(student, library);
 
         }
 
     }
 
+    @Override
     public void extendAll(FacultyMember facultyMember, LocalDate newDueDate, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-        for (Borrowable volume : bookVolumes) {
-            volume.extendAll(facultyMember, newDueDate, library);
+        for (Borrowable borrowable : books) {
+            borrowable.extendAll(facultyMember, newDueDate, library);
 
         }
 

@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public interface Borrowable{
     String getTitle();
 
-    void borrow(User user,LibrarySystem library) throws UserOrBookDoesNotExistException;
+    void borrowAll(User user,LibrarySystem library) throws UserOrBookDoesNotExistException;
 
     void extendAll(FacultyMember facultyMember, LocalDate newDueDate, LibrarySystem library) throws UserOrBookDoesNotExistException;
 
-    void returnAll(Student user, LibrarySystem library) throws UserOrBookDoesNotExistException;
+    void returnAll(Student student, LibrarySystem library) throws UserOrBookDoesNotExistException;
 
 }
