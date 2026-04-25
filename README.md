@@ -1,19 +1,29 @@
-# HBV202GAssignment8
-A Maven project skeleton. The provided Maven POM sets the Java version to 21.
+# HBV202G: Final project
 
-All classes need to be located in Java package `is.hi.hbv202g.assignment8`.
+This project is a library system that has a collection of book titles and collections of books. To borrow a book/bookset a user must be logged inn and an the title must be available. When a title is borrowed it creates a lending connected to the user and return date, if the title is a bookset or in a bookset then all the books are borrowed. The return date can br extended must be done by a faculty member. When the title is returned by the user it becomes available and if it was turned inn after the due date a student will get a fee that can be paid in the library.
 
-Class and method names and parameter names and types of the submitted solution need to be **exactly** the same 
-as in the UML class diagram in the assignment PDF. 
+## Installation
+This project is a Maven project, i.e. it uses the standard Maven project structure that your IDE should understand  when you `git clone` it. 
 
-If you like, you can import from project directory `UML` the file 
-`library_system.uxf` into the online UML editor https://www.umletino.com/ 
-and copy/paste from there class and method names: click on a class and then, 
-you can copy from the `properties` window on the right hand side class 
-and method names.
+## Running
 
 Maven:
 
 - `mvn compile` compiles all implementation classes.
-- `mvn exec:java` executes the `main` method of the implementation, however that creates only an instance of the `LibrarySystem` class, but nothing more.
-- `mvn test` runs test cases, however the that creates only an instance of the `LibrarySystem` class, but nothing more.
+- `mvn exec:java` executes the `main` method of the implementation
+- `mvn test` runs test cases
+- `mvn package` package the project into a JAR file that is stored in the target folder
+- `mvn site` creates a project website
+
+## Design pattern
+
+This project uses the composite pattern to create a bookset that contains more than one book. This makes it so if one book in the set is borrowed then all books are borrowed with lendings.
+<Borrowable> is the common interface for both the atomic object <Book> and the container object <BookSet> allows us to treat them uniformly.
+
+## License
+
+This project is licensed under the MIT license see the [License file](LICENSE)
+
+## UML class diagram
+
+[UML class diagram](src/site/markdown/uml.md)

@@ -3,47 +3,70 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * A bookset with many books that can be borrowed or returned from the library
+ */
 public class BookSet implements Borrowable{
-    private List<Borrowable> bookVolumes = new ArrayList<Borrowable>();
+    private List<Borrowable> books = new ArrayList<Borrowable>();
     private String title;
 
+    /**
+     * Constructor for bookset
+     * @param title the title of the bookset
+     */
     public BookSet(String title) {
         this.title = title;
     }
 
+    /**
+     * Add one book to the bookset
+     * @param book the book to add
+     */
     public void add(Borrowable book) {
-        bookVolumes.add(book);
+        books.add(book);
     }
 
+    /**
+     * Remove one book from the bookset
+     * @param book the book to remove
+     */
     public void remove(Borrowable book) {
-        bookVolumes.remove(book);
+        books.remove(book);
     }
+
+    /**
+     * Returns all books in the bookset
+     * @return the list of books in the bookset
+     */
     public List<Borrowable> getChildren() {
-        return bookVolumes;
+        return books;
     }
 
-    public void borrow(User user, LibrarySystem library) throws UserOrBookDoesNotExistException {
+    @Override
+    public void borrowAll(User user, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-        for (Borrowable volume : bookVolumes) {
-            volume.borrow(user, library);
+        for (Borrowable borrowable : books) {
+            borrowable.borrowAll(user, library);
 
         }
 
     }
 
-    public void returnAll(Student user, LibrarySystem library) throws UserOrBookDoesNotExistException {
+    @Override
+    public void returnAll(Student student, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-        for (Borrowable volume : bookVolumes) {
-            volume.returnAll(user, library);
+        for (Borrowable borrowable : books) {
+            borrowable.returnAll(student, library);
 
         }
 
     }
 
+    @Override
     public void extendAll(FacultyMember facultyMember, LocalDate newDueDate, LibrarySystem library) throws UserOrBookDoesNotExistException {
 
-        for (Borrowable volume : bookVolumes) {
-            volume.extendAll(facultyMember, newDueDate, library);
+        for (Borrowable borrowable : books) {
+            borrowable.extendAll(facultyMember, newDueDate, library);
 
         }
 
@@ -52,6 +75,11 @@ public class BookSet implements Borrowable{
     @Override
     public String getTitle(){
         return title;
+    }
+
+    @Override
+    public void setTitle(String title){
+        this.title=title;
     }
 
 

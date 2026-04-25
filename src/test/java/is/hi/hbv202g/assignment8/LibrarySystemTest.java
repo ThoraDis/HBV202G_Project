@@ -1,27 +1,26 @@
 package is.hi.hbv202g.assignment8;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class LibrarySystemTest {
     private LibrarySystem system;
 
     @BeforeEach
     void constructLibrarySystem() {
-        LibrarySystem system = new LibrarySystem();
+        system = new LibrarySystem();
     }
 
     @Test
     public void testAddBookWithTitleAndNameOfSingleAuthor() {
         system.addBookWithTitleAndNameOfSingleAuthor("Book", "Author");
 
-        Borrowable book = system.findBookByTitle("Book");
+        Borrowable book = system.findBorrowableByTitle("Book");
         assertNotNull(book);
     }
 
@@ -50,7 +49,7 @@ public class LibrarySystemTest {
     public void testFindBookByTitle_found() {
         system.addBookWithTitleAndNameOfSingleAuthor("Book", "Author");
 
-        Borrowable result = system.findBookByTitle("Book");
+        Borrowable result = system.findBorrowableByTitle("Book");
 
         assertNotNull(result);
         assertEquals("Book", result.getTitle());
@@ -58,7 +57,7 @@ public class LibrarySystemTest {
 
     @Test
     public void testFindBookByTitle_notFound() {
-        Borrowable result = system.findBookByTitle("Unknown");
+        Borrowable result = system.findBorrowableByTitle("Unknown");
 
         assertNull(result);
     }
@@ -86,10 +85,10 @@ public class LibrarySystemTest {
         system.addBookWithTitleAndNameOfSingleAuthor("Book", "Author");
         system.addStudentUser("Lilja", true);
 
-        Borrowable book = system.findBookByTitle("Book");
+        Borrowable book = system.findBorrowableByTitle("Book");
         User user = system.findUserByName("Lilja");
 
-        system.borrowBook(user, book);
+        system.borrowBorrowable(user, book);
 
         assertEquals(1, system.getLendings().size());
     }
